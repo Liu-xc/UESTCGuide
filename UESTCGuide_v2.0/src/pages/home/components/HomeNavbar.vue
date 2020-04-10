@@ -39,7 +39,6 @@ export default {
   width 15%
 
   .header
-    background white
     display flex
     align-items center
 
