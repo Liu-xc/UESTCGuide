@@ -2,18 +2,21 @@
   <div class="container">
     <main-search></main-search>
     <main-gallary></main-gallary>
+    <main-units></main-units>
   </div>
 </template>
 
 <script>
 import MainSearch from '@/pages/home/components/main/components/MainSearch'
 import MainGallary from '@/pages/home/components/main/components/MainGallary'
+import MainUnits from '@/pages/home/components/main/components/MainUnits'
 
 export default {
   name: 'HomeMain',
   components: {
     MainSearch,
-    MainGallary
+    MainGallary,
+    MainUnits
   }
 }
 </script>
