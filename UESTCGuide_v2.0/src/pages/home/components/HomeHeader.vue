@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div class="studio">
-      <img src="@/imgs/StarStudio.png" />
+      <img src="static/imgs/StarStudio.png" />
       <div>
         <div class="studio-label">成电导航 UESTC-StarStudio</div>
       </div>
     </div>
     <div class="weather">
       <div>
-        <img src="@/imgs/晴.png" alt="qing" />
+        <img src="static/imgs/晴.png" alt="qing" />
       </div>
       <div class="temp">晴 18°C~25°C</div>
     </div>

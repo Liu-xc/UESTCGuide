@@ -5,7 +5,7 @@
     </ul>
     <div class="search-box">
       <input type="text" placeholder="hello" />
-      <img src="@/imgs/搜索.png" />
+      <img src="static/imgs/搜索.png" />
     </div>
   </div>
 </template>

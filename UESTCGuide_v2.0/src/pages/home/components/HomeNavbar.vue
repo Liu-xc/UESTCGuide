@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="header">
-      <img src="@/imgs/导航图标.png" />
+      <img src="static/imgs/导航图标.png" />
       <div class="guide-title">成电导航</div>
     </div>
     <div class="nav-body">

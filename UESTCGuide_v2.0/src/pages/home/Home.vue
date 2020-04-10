@@ -25,7 +25,7 @@ export default {
         title: 'World',
         list: ['hello', 'vue']
       }, {
-        title: 'World',
+        title: 'hi',
         list: ['hello', 'vue']
       }]
     }
