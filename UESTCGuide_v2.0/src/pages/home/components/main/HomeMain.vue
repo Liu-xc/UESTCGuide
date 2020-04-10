@@ -1,10 +1,17 @@
 <template>
-  <div class="container"></div>
+  <div class="container">
+    <main-search></main-search>
+  </div>
 </template>
 
 <script>
+import MainSearch from '@/pages/home/components/main/components/MainSearch'
+
 export default {
-  name: 'HomeMain'
+  name: 'HomeMain',
+  components: {
+    MainSearch
+  }
 }
 </script>
 
