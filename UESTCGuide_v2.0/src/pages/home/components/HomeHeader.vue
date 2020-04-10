@@ -25,21 +25,22 @@ export default {
 .container
   display flex
   justify-content space-between
-  padding 0.6rem 1.5rem
-  height 2.2rem
+  padding 0.3rem 1.5rem
   align-items center
   background-color rgb(215, 215, 215)
 
   .studio
+    display flex
+    align-items center
+
     img
-      height 2.2rem
+      height 1.4rem
       float left
 
     div
       display flex
       float right
-      margin-left 0.8rem
-      height 2.2rem
+      margin-left 0.4rem
       align-items center
 
       .studio-label
@@ -47,8 +48,9 @@ export default {
         line-height 1rem
         background white
         border-radius 0.3rem
-        padding 0.15rem 0.6rem
-        font-size 0.8rem
+        padding 0.15rem 0.4rem
+        font-size 0.6rem
+        border solid 1px rgb(121, 121, 121)
 
   .weather
     display flex
@@ -57,14 +59,14 @@ export default {
     .temp
       float right
       background rgb(235, 235, 235)
-      padding 0.3rem 0.5rem
+      padding 0.2rem 0.4rem
       border solid 1px rgb(121, 121, 121)
-      font-size 0.85rem
+      font-size 0.65rem
 
     div
       float left
       margin-left 0.8rem
 
       img
-        height 1.9rem
+        height 1.4rem
 </style>
