@@ -11,13 +11,19 @@
         <img src="static/imgs/晴.png" alt="qing" />
       </div>
       <div class="temp">晴 18°C~25°C</div>
+      <div class="back-to-home" @click="handleBackClick">返回首页</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  methods: {
+    handleBackClick () {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
@@ -59,12 +65,15 @@ export default {
     display flex
     align-items center
 
-    .temp, .log-status
+    .temp, .back-to-home
       float right
       background rgb(235, 235, 235)
       padding 0.2rem 0.4rem
       border solid 1px rgb(121, 121, 121)
       font-size 0.65rem
+
+    .back-to-home
+      cursor pointer
 
     div
       float left
