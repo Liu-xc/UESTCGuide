@@ -2,6 +2,7 @@
   <div class="container">
     <main-search></main-search>
     <main-gallary></main-gallary>
+    <main-mine :my_links="my_links"></main-mine>
     <main-units :units="units"></main-units>
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import MainSearch from '@/pages/home/components/main/components/MainSearch'
 import MainGallary from '@/pages/home/components/main/components/MainGallary'
+import MainMine from '@/pages/home/components/main/components/MainMine'
 import MainUnits from '@/pages/home/components/main/components/MainUnits'
 
 export default {
@@ -16,10 +18,30 @@ export default {
   components: {
     MainSearch,
     MainGallary,
+    MainMine,
     MainUnits
   },
   data () {
     return {
+      my_links: [{
+        linkTitle: 'UESTC官网',
+        url: 'http://www.baidu.com/'
+      }, {
+        linkTitle: 'UESTC官网2',
+        url: 'http://www.baidu.com/'
+      }, {
+        linkTitle: 'UESTC官网3',
+        url: 'http://www.baidu.com/'
+      }, {
+        linkTitle: 'UESTC官网4',
+        url: 'http://www.baidu.com/'
+      }, {
+        linkTitle: 'UESTC官网5',
+        url: 'http://www.baidu.com/'
+      }, {
+        linkTitle: 'UESTC官网6',
+        url: 'http://www.baidu.com/'
+      }],
       units: [{
         unitTitleImg: 'static/imgs/我的世界.png',
         classList: [{
