@@ -5,8 +5,8 @@
       <ul class="class-list" v-for="classItem of item.classList" :key="classItem.classTitle">
         <li class="class-item">
           <div class="class-title">{{classItem.classTitle}}</div>
-          <ul class="link-list" v-for="(link, linkIndex) of classItem.linkList" :key="linkIndex">
-            <li class="link-item">
+          <ul class="link-list">
+            <li class="link-item" v-for="(link, linkIndex) of classItem.linkList" :key="linkIndex">
               <a :href="link.url" target="_blank">{{link.linkTitle}}</a>
             </li>
           </ul>
@@ -19,40 +19,8 @@
 <script>
 export default {
   name: 'MainUnits',
-  data () {
-    return {
-      units: [{
-        unitTitleImg: 'static/imgs/我的世界.png',
-        classList: [{
-          classTitle: '官网汇总',
-          linkList: [{
-            linkTitle: 'UESTC官网',
-            url: 'http://www.baidu.com/'
-          }, {
-            linkTitle: 'UESTC官网2',
-            url: 'http://www.baidu.com/'
-          }, {
-            linkTitle: 'UESTC官网3',
-            url: 'http://www.baidu.com/'
-          }, {
-            linkTitle: 'UESTC官网4',
-            url: 'http://www.baidu.com/'
-          }, {
-            linkTitle: 'UESTC官网5',
-            url: 'http://www.baidu.com/'
-          }, {
-            linkTitle: 'UESTC官网6',
-            url: 'http://www.baidu.com/'
-          }]
-        }, {
-          classTitle: '官网汇总1',
-          linkList: [{
-            linkTitle: 'UESTC官网1',
-            url: 'http://www.baidu.com/'
-          }]
-        }]
-      }]
-    }
+  props: {
+    units: Array
   }
 }
 </script>
@@ -61,10 +29,12 @@ export default {
 .main-units-container
   position relative
   margin-top 4rem
-  height 300px
+  height auto
   width 100%
-  background pink
+  background white
   padding 2.5rem 0 1rem 2.5rem
+  border-radius 1rem
+  border 1px solid rgb(189, 204, 212)
 
   .unit-title-img
     width 6.5rem
@@ -73,9 +43,8 @@ export default {
     top -2rem
 
   .class-list
-    padding 0 0 1.5rem 0
+    padding 0 0 1rem 0
     width 100%
-    background white
 
     .class-item
       display flex
@@ -86,12 +55,12 @@ export default {
 
       .link-list
         flex 1
-        display block
+        display flex
+        flex-wrap wrap
 
         .link-item
           display block
-          width 20%
-          background blue
+          width 25%
           font-size 0.65rem
           padding 0.2rem 0
           margin-bottom 0.3rem

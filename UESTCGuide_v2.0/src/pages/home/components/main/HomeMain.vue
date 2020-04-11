@@ -2,7 +2,7 @@
   <div class="container">
     <main-search></main-search>
     <main-gallary></main-gallary>
-    <main-units></main-units>
+    <main-units :units="units"></main-units>
   </div>
 </template>
 
@@ -17,6 +17,41 @@ export default {
     MainSearch,
     MainGallary,
     MainUnits
+  },
+  data () {
+    return {
+      units: [{
+        unitTitleImg: 'static/imgs/我的世界.png',
+        classList: [{
+          classTitle: '官网汇总',
+          linkList: [{
+            linkTitle: 'UESTC官网',
+            url: 'http://www.baidu.com/'
+          }, {
+            linkTitle: 'UESTC官网2',
+            url: 'http://www.baidu.com/'
+          }, {
+            linkTitle: 'UESTC官网3',
+            url: 'http://www.baidu.com/'
+          }, {
+            linkTitle: 'UESTC官网4',
+            url: 'http://www.baidu.com/'
+          }, {
+            linkTitle: 'UESTC官网5',
+            url: 'http://www.baidu.com/'
+          }, {
+            linkTitle: 'UESTC官网6',
+            url: 'http://www.baidu.com/'
+          }]
+        }, {
+          classTitle: '官网汇总1',
+          linkList: [{
+            linkTitle: 'UESTC官网1',
+            url: 'http://www.baidu.com/'
+          }]
+        }]
+      }]
+    }
   }
 }
 </script>
@@ -25,7 +60,7 @@ export default {
 .container
   position relative
   left 33%
-  top 3rem
+  top 5rem
   height 100px
   width 50%
 </style>
