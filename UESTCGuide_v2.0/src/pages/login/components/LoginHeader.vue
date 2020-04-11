@@ -11,19 +11,13 @@
         <img src="static/imgs/晴.png" alt="qing" />
       </div>
       <div class="temp">晴 18°C~25°C</div>
-      <div class="log-status" @click="handleLogClick">登录</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomeHeader',
-  methods: {
-    handleLogClick () {
-      this.$router.push('/login')
-    }
-  }
+  name: 'HomeHeader'
 }
 </script>
 
