@@ -29,6 +29,7 @@ export default {
 
 <style scoped lang="stylus">
 .container
+  min-width 800px
   z-index 99
   width 100%
   position fixed

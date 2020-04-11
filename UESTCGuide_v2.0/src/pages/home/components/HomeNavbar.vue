@@ -37,6 +37,8 @@ export default {
   left 10%
   top 5rem
   width 15%
+  min-width 280px
+  min-height 600px
 
   .header
     display flex
@@ -62,15 +64,15 @@ export default {
     padding 0.6rem 0
 
     .out-list
-      width 50%
+      width 40%
 
       .anchor
         padding 1rem 0 0.3rem 0
-        font-size 1.1rem
+        font-size 1rem
         font-weight 500
 
       .inner-list
         li
-          font-size 1rem
-          padding 0.1rem
+          font-size 0.8rem
+          padding 0.3rem 0
 </style>

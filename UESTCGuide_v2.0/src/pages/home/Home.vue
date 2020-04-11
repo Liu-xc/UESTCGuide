@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <div class="home-container">
     <home-header></home-header>
     <home-navbar :navList="navList"></home-navbar>
-    <home-main></home-main>
-    <div style="height: 80rem"></div>
+    <home-main :units="units"></home-main>
     <home-footer></home-footer>
   </div>
 </template>
@@ -25,7 +24,8 @@ export default {
   },
   data () {
     return {
-      navList: []
+      navList: [],
+      units: []
     }
   },
   methods: {
@@ -37,6 +37,7 @@ export default {
       if (res.ret && res.data) {
         const resData = res.data
         this.navList = resData.navList
+        this.units = resData.units
         console.log(resData)
       }
     }
@@ -47,4 +48,8 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus"></style>
+<style scoped lang="stylus">
+.home-container
+  min-width 1400px
+  min-height 1000px
+</style>
