@@ -13,6 +13,7 @@ import HomeHeader from '@/pages/home/components/HomeHeader'
 import HomeNavbar from '@/pages/home/components/HomeNavbar'
 import HomeMain from '@/pages/home/components/main/HomeMain'
 import HomeFooter from '@/pages/home/components/HomeFooter'
+import axios from 'axios'
 
 export default {
   name: 'Home',
@@ -24,14 +25,24 @@ export default {
   },
   data () {
     return {
-      navList: [{
-        title: 'World',
-        list: ['hello', 'vue']
-      }, {
-        title: 'hi',
-        list: ['hello', 'vue']
-      }]
+      navList: []
     }
+  },
+  methods: {
+    getBasicInfo () {
+      axios.get('/static/basicData/data.json?').then(this.getDataSucc)
+    },
+    getDataSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const resData = res.data
+        this.navList = resData.navList
+        console.log(resData)
+      }
+    }
+  },
+  mounted () {
+    this.getBasicInfo()
   }
 }
 </script>
