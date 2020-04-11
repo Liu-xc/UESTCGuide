@@ -4,6 +4,7 @@
     <home-navbar :navList="navList"></home-navbar>
     <home-main></home-main>
     <div style="height: 80rem"></div>
+    <home-footer></home-footer>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
 import HomeHeader from '@/pages/home/components/HomeHeader'
 import HomeNavbar from '@/pages/home/components/HomeNavbar'
 import HomeMain from '@/pages/home/components/main/HomeMain'
+import HomeFooter from '@/pages/home/components/HomeFooter'
 
 export default {
   name: 'Home',
   components: {
     HomeHeader,
     HomeNavbar,
-    HomeMain
+    HomeMain,
+    HomeFooter
   },
   data () {
     return {
