@@ -1,9 +1,9 @@
 <template>
   <div class="home-container">
     <home-header></home-header>
-    <home-navbar :navList="navList"></home-navbar>
+    <home-navbar ref="home_navbar" :navList="navList"></home-navbar>
     <home-main :units="units"></home-main>
-    <home-footer></home-footer>
+    <home-footer ref="home_footer"></home-footer>
   </div>
 </template>
 

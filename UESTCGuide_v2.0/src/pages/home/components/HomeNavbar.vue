@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" ref="home_navbar">
     <div class="header">
       <img src="static/imgs/导航图标.png" />
       <div class="guide-title">成电导航</div>
@@ -26,7 +26,22 @@ export default {
   methods: {
     handleAnchorClick () {
       // hi
+    },
+    handleScroll () {
+      let navY = document.documentElement.scrollTop
+      if (navY > 1500) {
+        this.$refs.home_navbar.style.top = '3rem'
+      } else {
+        this.$refs.home_navbar.style.top = '5rem'
+      }
     }
+  },
+  mounted () {
+    console.log(this.$refs.home_navbar.offsetTop)
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  unmounted () {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -39,6 +54,7 @@ export default {
   width 15%
   min-width 280px
   min-height 600px
+  transition 0.4s
 
   .header
     display flex
