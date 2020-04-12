@@ -38,7 +38,6 @@ export default {
         const resData = res.data
         this.navList = resData.navList
         this.units = resData.units
-        console.log(resData)
       }
     }
   },

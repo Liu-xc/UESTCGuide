@@ -3,22 +3,80 @@
     <div class="main-mine-container">
       <img class="mine-title-img" src="static/imgs/我的世界.png" />
       <ul class="my-list">
-        <li class="my-link" v-for="(item, index) of my_links" :key="index">
+        <li class="my-link" v-for="(item, index) of myLinks" :key="index">
           <a :href="item.url" target="_blank">{{item.linkTitle}}</a>
         </li>
-        <li class="my-link">
+        <li class="my-link" @click="handleAddClick" ref="my_link">
           <img src="static/imgs/添加.png" class="add-icon" />
         </li>
       </ul>
     </div>
+    <add-link-panel
+      :style="panelStyle"
+      @submit="handlePanelSubmit"
+      @closePanel="panelDisplayToggle"
+    ></add-link-panel>
   </div>
 </template>
 
 <script>
+import AddLinkPanel from '@/pages/home/components/AddLinkPanel'
 export default {
   name: 'MainMine',
   props: {
     my_links: Array
+  },
+  data () {
+    return {
+      myLinks: this.my_links,
+      panelStyle: {
+        top: '',
+        left: '',
+        display: 'none'
+      }
+    }
+  },
+  computed: {
+    siteNameList () {
+      let list = [new Set()]
+      for (let val of this.myLinks) {
+        list.push(val.linkTitle)
+      }
+      return list
+    },
+    siteUrlList () {
+      let list = [new Set()]
+      for (let val of this.myLinks) {
+        list.push(val.url)
+      }
+      return list
+    }
+  },
+  components: {
+    AddLinkPanel
+  },
+  methods: {
+    panelDisplayToggle () {
+      const disp = this.panelStyle.display
+      this.panelStyle.display = disp === 'block' ? 'none' : 'block'
+    },
+    handleAddClick () {
+      this.panelStyle.top = event.pageY + 35 + 'px'
+      this.panelStyle.left = event.pageX - 25 + 'px'
+      this.panelStyle.display = 'block'
+    },
+    handlePanelSubmit (siteName, siteUrl) {
+      this.panelDisplayToggle()
+      if (this.siteNameList.indexOf(siteName) !== -1) {
+        alert('名称已存在！')
+        return
+      }
+      if (this.siteUrlList.indexOf(siteUrl) !== -1) {
+        alert('网址已存在！')
+        return
+      }
+      this.myLinks.push({ linkTitle: siteName, url: siteUrl })
+    }
   }
 }
 </script>
@@ -56,6 +114,7 @@ export default {
       display flex
       justify-content center
       align-items center
+      cursor pointer
 
       .add-icon
         width 0.7rem

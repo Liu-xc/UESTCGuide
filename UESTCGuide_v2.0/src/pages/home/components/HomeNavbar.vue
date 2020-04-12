@@ -37,7 +37,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$refs.home_navbar.offsetTop)
     window.addEventListener('scroll', this.handleScroll)
   },
   unmounted () {
