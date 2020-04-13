@@ -84,7 +84,11 @@ export default {
     getMyListSucc (res) {
       res = res.data
       if (res.data) {
-        this.myLinks = res.data.myLinks
+        let list = res.data.split(',')
+        let couplesLen = list.length / 2
+        for (let i = 1; i <= couplesLen; i++) {
+          this.myLinks.push({ linkTitle: list[2 * i - 2], url: list[2 * i - 1] })
+        }
       }
     }
   },
