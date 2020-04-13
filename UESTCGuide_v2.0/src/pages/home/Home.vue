@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">
+  <div class="home-container" @click="hidePanel">
     <home-header></home-header>
     <home-navbar ref="home_navbar" :navList="navList"></home-navbar>
     <home-main :units="units"></home-main>
@@ -31,6 +31,9 @@ export default {
   computed: {
     logStatus () {
       return this.$store.state.logStatus
+    },
+    showPanel () {
+      return this.$store.state.showPanel
     }
   },
   methods: {
@@ -61,6 +64,9 @@ export default {
     },
     changeLogStatus (status) {
       this.$store.commit('changeLogStatus', status)
+    },
+    hidePanel () {
+      this.$store.commit('changeShowPanel', false)
     }
   },
   mounted () {

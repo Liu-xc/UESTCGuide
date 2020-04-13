@@ -1,5 +1,5 @@
 <template>
-  <div class="add-link-panel">
+  <div class="add-link-panel" @click.stop>
     <form class="add-link-form">
       <div class="fill-to-add">
         <div class="fill-link-box">

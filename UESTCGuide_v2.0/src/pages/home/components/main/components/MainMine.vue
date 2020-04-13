@@ -11,11 +11,7 @@
         </li>
       </ul>
     </div>
-    <add-link-panel
-      :style="panelStyle"
-      @submit="handlePanelSubmit"
-      @closePanel="panelDisplayToggle"
-    ></add-link-panel>
+    <add-link-panel :style="panelStyle" @submit="handlePanelSubmit" v-if="showPanel"></add-link-panel>
   </div>
 </template>
 
@@ -28,11 +24,9 @@ export default {
   },
   data () {
     return {
-      myLinks: this.my_links,
       panelStyle: {
         top: '',
-        left: '',
-        display: 'none'
+        left: ''
       }
     }
   },
@@ -53,32 +47,37 @@ export default {
     },
     logStatus () {
       return this.$store.state.logStatus
+    },
+    myLinks () {
+      return this.$store.state.myLinks
+    },
+    showPanel () {
+      return this.$store.state.showPanel
     }
   },
   components: {
     AddLinkPanel
   },
   methods: {
-    panelDisplayToggle () {
-      const disp = this.panelStyle.display
-      this.panelStyle.display = disp === 'block' ? 'none' : 'block'
-    },
     handleAddClick () {
+      event.stopPropagation()
       this.panelStyle.top = event.pageY + 35 + 'px'
       this.panelStyle.left = event.pageX - 25 + 'px'
-      this.panelStyle.display = 'block'
+      this.$store.commit('changeShowPanel', true)
     },
     handlePanelSubmit (siteName, siteUrl) {
-      this.panelDisplayToggle()
       if (this.siteNameList.indexOf(siteName) !== -1) {
         alert('名称已存在！')
+        this.$store.commit('changeShowPanel', false)
         return
       }
       if (this.siteUrlList.indexOf(siteUrl) !== -1) {
+        this.$store.commit('changeShowPanel', false)
         alert('网址已存在！')
         return
       }
       this.myLinks.push({ linkTitle: siteName, url: siteUrl })
+      this.$store.commit('changeShowPanel', false)
     }
   }
 }
