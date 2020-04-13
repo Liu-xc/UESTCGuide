@@ -37,10 +37,10 @@ export default {
     }
   },
   methods: {
-    getBasicInfo () {
-      axios.get('/static/basicData/data.json?').then(this.getDataSucc)
+    getStaticInfo () {
+      axios.get('/static/basicData/data.json?').then(this.getStaticDataSucc)
     },
-    getDataSucc (res) {
+    getStaticDataSucc (res) {
       res = res.data
       if (res.ret && res.data) {
         const resData = res.data
@@ -70,7 +70,7 @@ export default {
     }
   },
   mounted () {
-    this.getBasicInfo()
+    this.getStaticInfo()
     this.getLogStatus()
   }
 }

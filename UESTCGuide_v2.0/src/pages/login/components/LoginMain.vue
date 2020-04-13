@@ -6,15 +6,15 @@
       <div class="fill-box">
         <div class="id-box">
           <div>用户名</div>
-          <input type="text" placeholder="学号" class="id-input" />
+          <input type="text" placeholder="学号" class="id-input" v-model="userID" />
         </div>
         <div class="pwd-box">
           <div>密码</div>
-          <input type="password" placeholder="密码" class="pwd-input" />
+          <input type="password" placeholder="密码" class="pwd-input" v-model="userPWD" />
         </div>
       </div>
       <div class="btn-box">
-        <div class="log-btn">登 录</div>
+        <div class="log-btn" @click="handleLogClick">登 录</div>
         <router-link to="/register" class="regist-btn">立即注册</router-link>
       </div>
     </form>
@@ -22,8 +22,35 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'LoginMain'
+  name: 'LoginMain',
+  data () {
+    return {
+      userID: '',
+      userPWD: ''
+    }
+  },
+  methods: {
+    handleLogClick () {
+      axios({
+        method: 'post',
+        url: 'public/users/login',
+        data: {
+          'admin_username': this.userID,
+          'admin_password': this.userPWD
+        }
+      }).then(this.logSucc)
+    },
+    logSucc (res) {
+      res = res.data
+      if (res) {
+        // h
+      } else {
+        alert('用户名或')
+      }
+    }
+  }
 }
 </script>
 

@@ -13,7 +13,7 @@
       <div class="temp">晴 18°C~25°C</div>
       <div
         class="log-status"
-        @click="[{handleLogClick: !this.logStatus}, {handleLogoutClick: this.logStatus}]"
+        @click="!logStatus ? handleLogClick() : handleLogoutClick()"
       >{{this.btnText}}</div>
     </div>
   </div>
@@ -24,7 +24,7 @@ export default {
   name: 'HomeHeader',
   computed: {
     btnText () {
-      return this.logStatus ? '退出' : '登录'
+      return this.$store.state.logStatus ? '退出' : '登录'
     },
     logStatus () {
       return this.$store.state.logStatus
@@ -37,6 +37,8 @@ export default {
     handleLogoutClick () {
       // axios发送登出请求，返回正确就触发退出事件，由父组件接收
       // 可能需要使用store来处理
+
+      this.$store.commit('changeLogStatus', false)
     }
   }
 }

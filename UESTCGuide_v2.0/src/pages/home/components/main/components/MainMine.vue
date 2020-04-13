@@ -17,6 +17,7 @@
 
 <script>
 import AddLinkPanel from '@/pages/home/components/AddLinkPanel'
+import axios from 'axios'
 export default {
   name: 'MainMine',
   props: {
@@ -24,6 +25,7 @@ export default {
   },
   data () {
     return {
+      myLinks: [],
       panelStyle: {
         top: '',
         left: ''
@@ -47,9 +49,6 @@ export default {
     },
     logStatus () {
       return this.$store.state.logStatus
-    },
-    myLinks () {
-      return this.$store.state.myLinks
     },
     showPanel () {
       return this.$store.state.showPanel
@@ -78,7 +77,19 @@ export default {
       }
       this.myLinks.push({ linkTitle: siteName, url: siteUrl })
       this.$store.commit('changeShowPanel', false)
+    },
+    getMyList () {
+      axios.get('static/basicData/mylist.json').then(this.getMyListSucc)
+    },
+    getMyListSucc (res) {
+      res = res.data
+      if (res.data) {
+        this.myLinks = res.data.myLinks
+      }
     }
+  },
+  mounted () {
+    this.getMyList()
   }
 }
 </script>
