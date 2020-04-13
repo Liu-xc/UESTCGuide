@@ -69,9 +69,23 @@ export default {
     }
   },
   methods: {
+    checkURLByReg (url) {
+      let regexp = /((http|https):\/\/([\w\\-]+\.)+[\w\\-]+(\/[\w\u4e00-\u9fa5\-\\.\\/?\\@\\%\\!\\&=\\+\\~\\:\\#\\;\\,]*)?)/gi
+      url = url.match(regexp)
+      if (url) {
+        return url[0]
+      } else {
+        return null
+      }
+    },
     clickAddBtn () {
       if (this.siteName && this.siteUrl) {
-        this.$emit('submit', this.siteName, this.siteUrl)
+        this.siteUrl = this.checkURLByReg(this.siteUrl)
+        if (!this.siteUrl) {
+          alert('请检查网址格式！')
+        } else {
+          this.$emit('submit', this.siteName, this.siteUrl)
+        }
       } else {
         alert('请完善数据！')
         this.$emit('closePanel')
