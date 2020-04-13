@@ -6,8 +6,8 @@
     </div>
     <div class="nav-body">
       <ul class="out-list">
-        <li v-for="item of navList" :key="item.title" @click="handleAnchorClick">
-          <div class="anchor">{{item.title}}</div>
+        <li v-for="item of navList" :key="item.title">
+          <div class="anchor" @click="handleAnchorClick">{{item.title}}</div>
           <ul v-for="(innerItem, index) of item.list" :key="index" class="inner-list">
             <li>{{innerItem}}</li>
           </ul>
@@ -25,7 +25,8 @@ export default {
   },
   methods: {
     handleAnchorClick () {
-      // hi
+      const title = event.target.innerHTML
+      this.$store.commit('changeScrollTitle', title)
     },
     handleScroll () {
       let navY = document.documentElement.scrollTop
@@ -85,6 +86,7 @@ export default {
         padding 1rem 0 0.3rem 0
         font-size 1rem
         font-weight 500
+        cursor pointer
 
       .inner-list
         li

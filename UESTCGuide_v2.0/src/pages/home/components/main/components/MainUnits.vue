@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <div class="main-units-container" v-for="(item, index) of units" :key="index">
+  <div ref="wrapper">
+    <div
+      class="main-units-container"
+      v-for="(item, index) of units"
+      :key="index"
+      :ref="refList[index]"
+    >
       <img class="unit-title-img" :src="item.unitTitleImg" />
       <ul class="class-list" v-for="classItem of item.classList" :key="classItem.classTitle">
         <li class="class-item">
@@ -17,10 +22,32 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
   name: 'MainUnits',
   props: {
     units: Array
+  },
+  data () {
+    return {
+      refList: ['成电印记', '校园助手', '学习平台', '成电社交']
+    }
+  },
+  computed: {
+    scrollTitle () {
+      return this.$store.state.scrollTitle
+    }
+  },
+  mounted () {
+    this.scroll = new BScroll(this.$refs.wrapper)
+  },
+  watch: {
+    scrollTitle () {
+      const title = this.scrollTitle
+      const element = this.$refs[title][0]
+      console.log(title)
+      this.scroll.scrollToElement(element)
+    }
   }
 }
 </script>

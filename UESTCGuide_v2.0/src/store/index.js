@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     logStatus: true,
-    showPanel: false
+    showPanel: false,
+    scrollTitle: '成电印记'
   },
   mutations: {
     changeLogStatus (state, status) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     changeShowPanel (state, show) {
       state.showPanel = show
+    },
+    changeScrollTitle (state, title) {
+      state.scrollTitle = title
     }
   }
 })
