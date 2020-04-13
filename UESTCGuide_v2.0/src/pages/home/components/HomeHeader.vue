@@ -11,7 +11,10 @@
         <img src="static/imgs/晴.png" alt="qing" />
       </div>
       <div class="temp">晴 18°C~25°C</div>
-      <div class="log-status" @click="handleLogClick">登录</div>
+      <div
+        class="log-status"
+        @click="[{handleLogClick: !this.logStatus}, {handleLogoutClick: this.logStatus}]"
+      >{{this.btnText}}</div>
     </div>
   </div>
 </template>
@@ -19,9 +22,21 @@
 <script>
 export default {
   name: 'HomeHeader',
+  computed: {
+    btnText () {
+      return this.logStatus ? '退出' : '登录'
+    },
+    logStatus () {
+      return this.$store.state.logStatus
+    }
+  },
   methods: {
     handleLogClick () {
       this.$router.push('/login')
+    },
+    handleLogoutClick () {
+      // axios发送登出请求，返回正确就触发退出事件，由父组件接收
+      // 可能需要使用store来处理
     }
   }
 }
@@ -72,6 +87,9 @@ export default {
       padding 0.2rem 0.4rem
       border solid 1px rgb(121, 121, 121)
       font-size 0.65rem
+
+    .log-status
+      cursor pointer
 
     div
       float left

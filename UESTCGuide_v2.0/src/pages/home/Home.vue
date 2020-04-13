@@ -28,6 +28,11 @@ export default {
       units: []
     }
   },
+  computed: {
+    logStatus () {
+      return this.$store.state.logStatus
+    }
+  },
   methods: {
     getBasicInfo () {
       axios.get('/static/basicData/data.json?').then(this.getDataSucc)
@@ -39,10 +44,28 @@ export default {
         this.navList = resData.navList
         this.units = resData.units
       }
+    },
+    getLogStatus () {
+      axios.get('/static/log.json').then(this.getStatusSucc)
+    },
+    getStatusSucc (res) {
+      res = res.data
+      if (res.status === 0) {
+        this.changeLogStatus(false)
+      } else if (res.status === 1) {
+        this.changeLogStatus(true)
+      } else {
+        this.changeLogStatus(false)
+        alert('登陆状态异常！')
+      }
+    },
+    changeLogStatus (status) {
+      this.$store.commit('changeLogStatus', status)
     }
   },
   mounted () {
     this.getBasicInfo()
+    this.getLogStatus()
   }
 }
 </script>

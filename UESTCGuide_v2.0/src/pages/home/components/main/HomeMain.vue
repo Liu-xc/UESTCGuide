@@ -2,7 +2,7 @@
   <div class="container">
     <main-search></main-search>
     <main-gallary></main-gallary>
-    <main-mine :my_links="my_links"></main-mine>
+    <main-mine :my_links="my_links" v-if="logStatus"></main-mine>
     <main-units :units="units"></main-units>
   </div>
 </template>
@@ -45,6 +45,11 @@ export default {
         linkTitle: 'UESTC官网6',
         url: 'http://www.baidu.com/'
       }]
+    }
+  },
+  computed: {
+    logStatus () {
+      return this.$store.state.logStatus
     }
   }
 }

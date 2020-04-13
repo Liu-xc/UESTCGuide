@@ -50,6 +50,9 @@ export default {
         list.push(val.url)
       }
       return list
+    },
+    logStatus () {
+      return this.$store.state.logStatus
     }
   },
   components: {

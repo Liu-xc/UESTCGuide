@@ -60,7 +60,9 @@ export default {
 
 <style scoped lang="stylus">
 .activeStyle
-  background white
+  background white !important
+  border none !important
+  box-shadow 5px -2px 15px rgba(200, 200, 200, 0.6) !important
 
 .search-container
   width 100%
@@ -74,6 +76,8 @@ export default {
       border-radius 0.5rem 0.5rem 0 0
       padding 0.5rem 1rem
       font-size 0.7rem
+      background rgba(200, 200, 200, 0.4)
+      border-left solid 1px rgba(200, 200, 200, 0.7)
 
   .search-box
     position relative
@@ -95,4 +99,5 @@ export default {
     img
       height 1.2rem
       padding 0 1rem
+      cursor pointer
 </style>
