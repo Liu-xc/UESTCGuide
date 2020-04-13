@@ -1,10 +1,18 @@
 <template>
   <div class="search-container">
     <ul class="engin-list">
-      <li class="engin-item" v-for="item of enginList" :key="item.name">{{item.name}}</li>
+      <li
+        class="engin-item"
+        v-for="item of enginList"
+        :key="item.name"
+        :ref="item.name"
+        :data-placeholder="item.placeholder"
+        :class="{activeStyle: item.name === activeOne}"
+        @click="hanleEnginClick"
+      >{{item.name}}</li>
     </ul>
     <div class="search-box">
-      <input type="text" placeholder="hello" />
+      <input type="text" :placeholder="placeholder" />
       <img src="static/imgs/搜索.png" />
     </div>
   </div>
@@ -15,16 +23,45 @@ export default {
   name: 'MainSearch',
   data () {
     return {
+      activeOne: '百度',
+      placeholder: '百度一下',
       enginList: [{
-        name: 'Blibli',
-        placeholder: 'Bilibli'
+        name: '百度',
+        placeholder: '百度一下'
+      }, {
+        name: 'Google',
+        placeholder: 'Google搜索'
+      }, {
+        name: 'Bing',
+        placeholder: '必应搜索'
+      }, {
+        name: '知乎',
+        placeholder: '在知乎搜索'
+      }, {
+        name: '微信',
+        placeholder: '在微信搜索'
+      }, {
+        name: 'Bilibili',
+        placeholder: '在Bilibili搜索'
       }]
+    }
+  },
+  methods: {
+    hanleEnginClick () {
+      const oLi = event.target
+      const enginName = oLi.innerHTML
+      const placeholder = this.$refs[enginName][0]['dataset'].placeholder
+      this.activeOne = enginName
+      this.placeholder = placeholder
     }
   }
 }
 </script>
 
 <style scoped lang="stylus">
+.activeStyle
+  background white
+
 .search-container
   width 100%
 
@@ -33,7 +70,7 @@ export default {
     display flex
 
     .engin-item
-      background white
+      cursor pointer
       border-radius 0.5rem 0.5rem 0 0
       padding 0.5rem 1rem
       font-size 0.7rem
@@ -52,7 +89,7 @@ export default {
       flex 1
       height 100%
       padding-left 1rem
-      font-size 1rem
+      font-size 0.9rem
       color rgb(100, 100, 100)
 
     img
