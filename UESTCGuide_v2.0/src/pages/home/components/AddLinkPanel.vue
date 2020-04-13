@@ -15,9 +15,13 @@
       <div class="click-to-add">
         <div class="usual-link-title">常用网址</div>
         <ul>
-          <li v-for="item of linkList" :key="item.title">
-            <a :href="item.url" target="_blank">{{item.title}}</a>
-          </li>
+          <li
+            v-for="item of linkList"
+            :data-url="item.url"
+            :key="item.title"
+            @click="handleClickAddLink"
+            :ref="'link-' + item.title"
+          >{{item.title}}</li>
         </ul>
       </div>
     </form>
@@ -72,6 +76,13 @@ export default {
         alert('请完善数据！')
         this.$emit('closePanel')
       }
+    },
+    handleClickAddLink () {
+      event.stopPropagation()
+      const siteName = event.target.innerHTML
+      const ref = 'link-' + siteName
+      const siteUrl = this.$refs[ref][0].dataset.url
+      this.$emit('submit', siteName, siteUrl)
     }
   }
 }
@@ -153,4 +164,10 @@ export default {
           margin 0.3rem
           text-align center
           font-size 0.55rem
+          color #25a4bb
+          cursor pointer
+          z-index 100
+
+          span
+            z-index 0
 </style>
