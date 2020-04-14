@@ -21,6 +21,7 @@ export default {
 
 <style scoped lang="stylus">
 .gallary-container
+  min-width 800px
   position relative
   margin-top 2rem
   width 100%

@@ -33,21 +33,28 @@ export default {
   },
   methods: {
     handleLogClick () {
-      axios({
-        method: 'post',
-        url: 'public/users/login',
-        data: {
-          'admin_username': this.userID,
-          'admin_password': this.userPWD
-        }
-      }).then(this.logSucc)
+      if (this.userID && this.userPWD) {
+        axios({
+          method: 'post',
+          url: 'public/users/login',
+          data: {
+            'admin_username': this.userID,
+            'admin_password': this.userPWD
+          }
+        }).then(this.logSucc).catch((e) => {
+          alert('登陆失败')
+        })
+      } else {
+        alert('请输入完整信息')
+      }
     },
     logSucc (res) {
       res = res.data
       if (res) {
-        // h
+        this.$store.commit('changeLogStatus', true)
+        this.$router.push('/')
       } else {
-        alert('用户名或')
+        alert('登陆失败')
       }
     }
   }
@@ -118,4 +125,5 @@ export default {
         background #1a6da8
         border #d7d7d7 1px solid
         margin-bottom 0.5rem
+        cursor pointer
 </style>

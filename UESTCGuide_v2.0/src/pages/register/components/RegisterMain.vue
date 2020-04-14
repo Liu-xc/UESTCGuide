@@ -6,32 +6,66 @@
       <div class="fill-box">
         <div class="id-box">
           <div>用户名</div>
-          <input type="text" class="id-input" />
+          <input type="text" class="id-input" v-model="userID" />
         </div>
         <div class="pwd-box">
           <div>密码</div>
-          <input type="password" class="pwd-input" />
+          <input type="password" class="pwd-input" v-model="userPWD" />
         </div>
         <div class="re-pwd-box">
           <div>确认密码</div>
-          <input type="password" class="repwd-input" />
+          <input type="password" class="repwd-input" v-model="rePWD" />
         </div>
         <div class="verify-box">
           <div>验证码</div>
-          <input type="text" class="verify-input" />
+          <input type="text" class="verify-input" v-model="verifyCode" />
           <img class="verify-img" />
         </div>
       </div>
       <div class="btn-box">
-        <div class="register-btn">立 即 注 册</div>
+        <div class="register-btn" @click="handleRegisterClick">立 即 注 册</div>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+// import axios from 'axios'
 export default {
-  name: 'RegisterMain'
+  name: 'RegisterMain',
+  data () {
+    return {
+      userID: '',
+      userPWD: '',
+      rePWD: '',
+      verifyCode: ''
+    }
+  },
+  methods: {
+    handleRegisterClick () {
+      if (this.userID) {
+        if (this.userPWD) {
+          if (this.rePWD) {
+            if (this.verifyCode) {
+              if (this.userPWD === this.rePWD) {
+                alert('这段代码还没写')
+              } else {
+                alert('两次密码不一致')
+              }
+            } else {
+              alert('请输入验证码')
+            }
+          } else {
+            alert('请填写确认密码')
+          }
+        } else {
+          alert('请填写密码')
+        }
+      } else {
+        alert('请填写用户名')
+      }
+    }
+  }
 }
 </script>
 

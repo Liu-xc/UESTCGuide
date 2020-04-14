@@ -12,17 +12,19 @@
       >{{item.name}}</li>
     </ul>
     <div class="search-box">
-      <input type="text" :placeholder="placeholder" />
+      <input type="text" :placeholder="placeholder" v-model="inputText" />
       <img src="static/imgs/搜索.png" />
     </div>
   </div>
 </template>
 
 <script>
+// import axios from 'axios'
 export default {
   name: 'MainSearch',
   data () {
     return {
+      inputText: '',
       activeOne: '百度',
       placeholder: '百度一下',
       enginList: [{
@@ -53,6 +55,9 @@ export default {
       const placeholder = this.$refs[enginName][0]['dataset'].placeholder
       this.activeOne = enginName
       this.placeholder = placeholder
+    },
+    handleSearchClick () {
+      // 还没写
     }
   }
 }
@@ -65,6 +70,7 @@ export default {
   box-shadow 5px -2px 15px rgba(200, 200, 200, 0.6) !important
 
 .search-container
+  min-width 800px
   width 100%
 
   .engin-list

@@ -78,6 +78,6 @@ export default {
 
 <style scoped lang="stylus">
 .home-container
-  min-width 1400px
+  min-width 1540px
   min-height 1000px
 </style>

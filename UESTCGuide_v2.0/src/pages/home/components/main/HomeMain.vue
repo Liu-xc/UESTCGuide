@@ -39,4 +39,5 @@ export default {
   width 100%
   height auto
   background #eef8ff
+  min-width 800px
 </style>

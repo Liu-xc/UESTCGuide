@@ -56,6 +56,7 @@ export default {
   top -4rem
 
 .main-units-container
+  min-width 800px
   position relative
   margin-top 4rem
   height auto

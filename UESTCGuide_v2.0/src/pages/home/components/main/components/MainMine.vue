@@ -100,6 +100,7 @@ export default {
 
 <style scoped lang="stylus">
 .main-mine-container
+  min-width 800px
   position relative
   margin-top 4rem
   height auto
