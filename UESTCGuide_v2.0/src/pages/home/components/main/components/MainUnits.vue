@@ -1,28 +1,29 @@
 <template>
   <div ref="wrapper">
-    <div
-      class="main-units-container"
-      v-for="(item, index) of units"
-      :key="index"
-      :ref="refList[index]"
-    >
-      <img class="unit-title-img" :src="item.unitTitleImg" />
-      <ul class="class-list" v-for="classItem of item.classList" :key="classItem.classTitle">
-        <li class="class-item">
-          <div class="class-title">{{classItem.classTitle}}</div>
-          <ul class="link-list">
-            <li class="link-item" v-for="(link, linkIndex) of classItem.linkList" :key="linkIndex">
-              <a :href="link.url" target="_blank">{{link.linkTitle}}</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div>
+      <div class="main-units-container" v-for="(item, index) of units" :key="index">
+        <a :id="refList[index]"></a>
+        <img class="unit-title-img" :src="item.unitTitleImg" />
+        <ul class="class-list" v-for="classItem of item.classList" :key="classItem.classTitle">
+          <li class="class-item">
+            <div class="class-title">{{classItem.classTitle}}</div>
+            <ul class="link-list">
+              <li
+                class="link-item"
+                v-for="(link, linkIndex) of classItem.linkList"
+                :key="linkIndex"
+              >
+                <a :href="link.url" target="_blank">{{link.linkTitle}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll'
 export default {
   name: 'MainUnits',
   props: {
@@ -38,15 +39,12 @@ export default {
       return this.$store.state.scrollTitle
     }
   },
-  mounted () {
-    this.scroll = new BScroll(this.$refs.wrapper)
-  },
   watch: {
     scrollTitle () {
       const title = this.scrollTitle
-      const element = this.$refs[title][0]
-      console.log(title)
-      this.scroll.scrollToElement(element)
+      // const el = this.$refs[title][0]
+      // el.scrollIntoView(true)
+      document.getElementById(title).scrollIntoView(true)
     }
   }
 }
