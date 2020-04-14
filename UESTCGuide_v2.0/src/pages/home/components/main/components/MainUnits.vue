@@ -2,7 +2,7 @@
   <div ref="wrapper">
     <div>
       <div class="main-units-container" v-for="(item, index) of units" :key="index">
-        <a :id="refList[index]"></a>
+        <a :id="refList[index]" class="a-anchor"></a>
         <img class="unit-title-img" :src="item.unitTitleImg" />
         <ul class="class-list" v-for="classItem of item.classList" :key="classItem.classTitle">
           <li class="class-item">
@@ -51,6 +51,10 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+.a-anchor
+  position absolute
+  top -4rem
+
 .main-units-container
   position relative
   margin-top 4rem
