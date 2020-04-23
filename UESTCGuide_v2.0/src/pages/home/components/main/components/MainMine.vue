@@ -20,12 +20,8 @@ import AddLinkPanel from '@/pages/home/components/AddLinkPanel'
 import axios from 'axios'
 export default {
   name: 'MainMine',
-  props: {
-    my_links: Array
-  },
   data () {
     return {
-      myLinks: [],
       panelStyle: {
         top: '',
         left: ''
@@ -52,6 +48,18 @@ export default {
     },
     showPanel () {
       return this.$store.state.showPanel
+    },
+    myLinks () {
+      const favorStr = this.$store.state.favor
+      const favor = []
+      if (favorStr) {
+        let list = favorStr.split(',')
+        let couplesLen = list.length / 2
+        for (let i = 1; i <= couplesLen; i++) {
+          favor.push({ linkTitle: list[2 * i - 2], url: list[2 * i - 1] })
+        }
+      }
+      return favor
     }
   },
   components: {
@@ -75,26 +83,36 @@ export default {
         alert('网址已存在！')
         return
       }
-      this.myLinks.push({ linkTitle: siteName, url: siteUrl })
+      // this.myLinks.push({ linkTitle: siteName, url: siteUrl })
+      axios.post('public/users/postRecord', {
+        name: siteName,
+        favor: siteName + ',' + siteUrl
+      }).then(this.submitSucc)
       this.$store.commit('changeShowPanel', false)
     },
-    getMyList () {
-      axios.get('static/basicData/mylist.json').then(this.getMyListSucc)
-    },
-    getMyListSucc (res) {
+    submitSucc (res) {
       res = res.data
-      if (res.data) {
-        let list = res.data.split(',')
-        let couplesLen = list.length / 2
-        for (let i = 1; i <= couplesLen; i++) {
-          this.myLinks.push({ linkTitle: list[2 * i - 2], url: list[2 * i - 1] })
-        }
+      if (res) {
+        this.$store.commit('changeFavor', res.newdata.favor)
       }
     }
-  },
-  mounted () {
-    this.getMyList()
+    // getMyList () {
+    //   // axios.get('static/basicData/mylist.json').then(this.getMyListSucc)
+    // },
+    // getMyListSucc (res) {
+    //   res = res.data
+    //   if (res.data) {
+    //     let list = res.data.split(',')
+    //     let couplesLen = list.length / 2
+    //     for (let i = 1; i <= couplesLen; i++) {
+    //       this.myLinks.push({ linkTitle: list[2 * i - 2], url: list[2 * i - 1] })
+    //     }
+    //   }
+    // }
   }
+  // mounted () {
+  //   this.getMyList()
+  // }
 }
 </script>
 

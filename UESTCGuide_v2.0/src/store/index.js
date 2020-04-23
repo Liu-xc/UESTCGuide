@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     logStatus: true,
     showPanel: false,
-    scrollTitle: '成电印记'
+    scrollTitle: '成电印记',
+    favor: ''
   },
   mutations: {
     changeLogStatus (state, status) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     changeScrollTitle (state, title) {
       state.scrollTitle = title
+    },
+    changeFavor (state, favor) {
+      state.favor = favor
     }
   }
 })

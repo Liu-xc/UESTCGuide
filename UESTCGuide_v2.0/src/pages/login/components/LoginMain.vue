@@ -52,6 +52,7 @@ export default {
       res = res.data
       if (res) {
         this.$store.commit('changeLogStatus', true)
+        this.$store.commit('changeFavor', res.favor)
         this.$router.push('/')
       } else {
         alert('登陆失败')

@@ -30,7 +30,7 @@ export default {
     },
     handleScroll () {
       let navY = document.documentElement.scrollTop
-      if (navY > 1500) {
+      if (navY > 1300) {
         this.$refs.home_navbar.style.top = '3rem'
       } else {
         this.$refs.home_navbar.style.top = '5rem'

@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HomeHeader',
   computed: {
@@ -37,8 +38,7 @@ export default {
     handleLogoutClick () {
       // axios发送登出请求，返回正确就触发退出事件，由父组件接收
       // 可能需要使用store来处理
-
-      this.$store.commit('changeLogStatus', false)
+      axios.post('public/users/logout')
     }
   }
 }

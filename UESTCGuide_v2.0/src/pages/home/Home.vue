@@ -49,13 +49,14 @@ export default {
       }
     },
     getLogStatus () {
-      axios.get('/static/log.json').then(this.getStatusSucc)
+      axios.get('public/base/status').then(this.getStatusSucc)
     },
     getStatusSucc (res) {
       res = res.data
       if (res.status === 0) {
         this.changeLogStatus(false)
       } else if (res.status === 1) {
+        this.$store.commit('changeFavor', res.favor)
         this.changeLogStatus(true)
       } else {
         this.changeLogStatus(false)

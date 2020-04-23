@@ -16,11 +16,11 @@
           <div>确认密码</div>
           <input type="password" class="repwd-input" v-model="rePWD" />
         </div>
-        <div class="verify-box">
+        <!-- <div class="verify-box">
           <div>验证码</div>
           <input type="text" class="verify-input" v-model="verifyCode" />
           <img class="verify-img" />
-        </div>
+        </div>-->
       </div>
       <div class="btn-box">
         <div class="register-btn" @click="handleRegisterClick">立 即 注 册</div>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'RegisterMain',
   data () {
@@ -48,7 +48,10 @@ export default {
           if (this.rePWD) {
             if (this.verifyCode) {
               if (this.userPWD === this.rePWD) {
-                alert('这段代码还没写')
+                axios.post('public/users/regist', {
+                  name: this.userID,
+                  password: this.userPWD
+                })
               } else {
                 alert('两次密码不一致')
               }
