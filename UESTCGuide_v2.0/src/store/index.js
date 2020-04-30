@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    logStatus: true,
+    logStatus: false,
     showPanel: false,
     scrollTitle: '成电印记',
     favor: ''
